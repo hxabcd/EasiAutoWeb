@@ -22,11 +22,11 @@
             <GitHubIcon size="24" />
           </a>
           <a
-            href="https://qm.QqIcon.com/q/5TV3Pvb2M2"
+href="https://qm.qq.com/q/bFXGjjDENG"
             target="_blank"
             rel="noopener"
             class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800/50 text-gray-400 hover:text-primary hover:bg-gray-800 transition-all"
-            title="QqIcon 群"
+           title="QQ 群"
           >
             <QqIcon size="24" />
           </a>
