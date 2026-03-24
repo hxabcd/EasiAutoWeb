@@ -24,7 +24,7 @@ export function useVersionStore() {
     state.error = null;
 
     fetchPromise = fetch(
-      'https://raw.githubusercontent.com/hxabcd/0xabcd-log/master/public/update/EasiAuto.json'
+      '/update.json'
     )
       .then((response) => response.json())
       .then((data) => {
