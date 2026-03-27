@@ -258,24 +258,6 @@
                 }
             ]
         },
-        "1.2.0beta1": {
-            "is_dev": true,
-            "confirm_required": true,
-            "description": "注意：此版本为早期测试版。更新至此版本后，你需要手动在 ClassIsland 清除已有的自动化并重新在档案中创建。",
-            "highlights": [
-                {
-                    "name": "分离登录档案",
-                    "description": "在应用档案中独立存储登录账号相关的数据"
-                }
-            ],
-            "others": [
-                "新增 运行前弹窗快捷键",
-                "修复 固定位置登录在非 Iwb 模式下仍失效",
-                "修复 获取程序自身路径时不合预期",
-                "其他 将数据文件移动至 /data 目录下"
-            ],
-            "downloads": []
-        },
         "1.2.0b1": {
             "is_dev": true,
             "confirm_required": true,
