@@ -265,7 +265,7 @@
             "highlights": [
                 {
                     "name": "分离登录档案",
-                    "description": "脱离 ClassIsland，在应用档案中存储登录账号相关的数据。"
+                    "description": "在应用档案中独立存储登录账号相关的数据"
                 }
             ],
             "others": [
