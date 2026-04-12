@@ -290,12 +290,26 @@
         "1.1.4r1": {
             "is_dev": false,
             "confirm_required": false,
-            "description": null,
+            "description": "修复了几个影响体验的 Bug",
             "highlights": [],
             "others": [
-                "修复 固定位置在非 Iwb 模式下仍失效"
+                "修复 固定位置在非 Iwb 模式下仍失效",
+                "修复 OpenCV 不可用",
+                "修复 可执行文件名称错误",
+                "修复 关于页其他信息折叠抽搐"
             ],
-            "downloads": []
+            "downloads": [
+                {
+                    "channel": "default",
+                    "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.1.4r1/EasiAuto_v1.1.4r1.zip",
+                    "sha256": "ab731c53a2f5fbe7eeecada55039469a904bf501d1b3809affd7fed3bd833090"
+                },
+                {
+                    "channel": "lite",
+                    "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.1.4r1/EasiAuto_v1.1.4r1_lite.zip",
+                    "sha256": "69495f05d7c814b208d876e571aabd7b47cdec8bd2f7e386a8b02cf0cffebd1a"
+                }
+            ]
         }
     }
 }
