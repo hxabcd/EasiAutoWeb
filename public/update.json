@@ -311,7 +311,7 @@
                 }
             ]
         },
-        "v1.2.0a1": {
+        "1.2.0a1": {
             "is_dev": true,
             "confirm_required": true,
             "description": "注意：此版本为早期测试版。更新至此版本后，你需要手动在 ClassIsland 清除已有的自动化并重新在档案中创建。\n此版本基于 v1.2.0b1 的基础上继续完善了新版 ClassIsland 编辑，修复了诸多问题，并进行了一定的测试。",
