@@ -1,6 +1,6 @@
 {
     "latest": "1.1.4r1",
-    "latest_dev": "v1.2.0a1",
+    "latest_dev": "1.2.0a1",
     "versions": {
         "1.0.0": {
             "is_dev": false,
