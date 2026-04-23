@@ -1,5 +1,5 @@
 {
-    "latest": "1.1.4r1",
+    "latest": "1.2.0",
     "latest_dev": "1.2.0a1",
     "versions": {
         "1.0.0": {
@@ -364,6 +364,40 @@
                     "channel": "lite",
                     "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.2.0a1/EasiAuto_v1.2.0a1_lite.zip",
                     "sha256": "cc67f09324360f792c9bead6270ced7daa71ca5963fbe7976689c83565ca8f7b"
+                }
+            ]
+        },
+        "1.2.0": {
+            "is_dev": false,
+            "confirm_required": false,
+            "description": null,
+            "highlights": [
+                {
+                    "name": "重构自动化管理",
+                    "description": "基于全新的科目-档案绑定，可拓展性更强"
+                }
+            ],
+            "others": [
+                "新增 远程公告",
+                "新增 使用数据统计 (#17)",
+                "新增 运行前弹窗快捷键",
+                "优化 UI 细节",
+                "优化 构建脚本与发行中心",
+                "修复 OpenCV 不可用",
+                "修复 在不同缩放下登录状态浮窗显示位置错误 (#25)",
+                "修复 设置项索引被错误写入配置文件的问题",
+                "修复 获取程序自身路径时不合预期",
+                "修复 缓解了 UI 中多次运行登录流程时的异常",
+                "修复 固定位置登录在非 Iwb 模式下仍失效",
+                "其他 移动图标与管理器位置",
+                "其他 完善遥测数据",
+                "其他 将数据文件移动至 /data 目录下"
+            ],
+            "downloads": [
+                {
+                    "channel": "default",
+                    "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.2.0/EasiAuto_v1.2.0.zip",
+                    "sha256": "91398f685199fbeb6b036d331f59e023b45bad547e6b5588a7efc4703a6653b8"
                 }
             ]
         }
