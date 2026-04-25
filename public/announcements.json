@@ -1,0 +1,14 @@
+{
+    "announcements": [
+        {
+            "id": "7a04065b-0c2c-4ebd-8b0f-27e2623d92e1",
+            "title": "Test Announcement",
+            "content": "This is a test announcement.",
+            "severity": "info",
+            "start_at": null,
+            "end_at": null,
+            "published_at": "2026-04-26T03:05:54.781536",
+            "link": "easiauto.0xabcd.dev"
+        }
+    ]
+}
