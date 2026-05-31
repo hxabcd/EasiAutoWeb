@@ -108,7 +108,7 @@
     </div>
 
     <div class="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="glass-card mx-auto max-w-5xl card-entrance">
+      <div class="glass-card backdrop-blur-[10px] mx-auto max-w-5xl card-entrance">
         <div
           class="flex flex-col lg:flex-row items-center gap-6 lg:gap-20 py-6 lg:py-14 px-4 sm:px-6 lg:px-20"
         >
@@ -239,8 +239,6 @@ onMounted(() => {
 <style scoped>
 .glass-card {
   background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 4px solid #05f175;
   border-radius: 1.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
