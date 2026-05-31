@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative min-h-screen flex items-center justify-center overflow-hidden pt-0 lg:pt-10"
+    class="relative z-10 min-h-screen flex items-center justify-center pt-0 lg:pt-10"
   >
     <!-- 警告横幅 - 仅桌面端显示 -->
     <div
