@@ -426,7 +426,7 @@
         "1.2.2b1": {
             "is_dev": true,
             "confirm_required": false,
-            "description": "注意：“二维码登录”暂不支持 Iwb 环境，且首次需管理员权限替换 DLL。“识别当前已登录账号”将在后续完善对其他登录方式的支持。",
+            "description": "注意：“二维码登录”首次需管理员权限替换 DLL。“识别当前已登录账号”将在后续完善对其他登录方式的支持。",
             "highlights": [
                 {
                     "name": "二维码登录",
