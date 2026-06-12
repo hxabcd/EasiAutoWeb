@@ -1,5 +1,5 @@
 {
-    "latest": "1.2.1",
+    "latest": "1.2.2b1",
     "latest_dev": "1.2.1",
     "versions": {
         "1.0.0": {
@@ -420,6 +420,43 @@
                     "channel": "default",
                     "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.2.1/EasiAuto_v1.2.1.zip",
                     "sha256": "df19fa626414fc50ac8b4bd3bff890d67495dd1c120fd78a71fcae64905fdbf5"
+                }
+            ]
+        },
+        "1.2.2b1": {
+            "is_dev": false,
+            "confirm_required": false,
+            "description": "注意：\\\"二维码登录\\\"暂不支持 Iwb 环境，且首次需管理员权限替换 DLL。\\\"识别当前已登录账号\\\"将在后续完善对其他登录方式的支持。",
+            "highlights": [
+                {
+                    "name": "二维码登录",
+                    "description": "支持扫描二维码添加档案，极速登录"
+                },
+                {
+                    "name": "识别当前已登录账号",
+                    "description": "运行前检测已登录账号，避免重复登录"
+                }
+            ],
+            "others": [
+                "新增 隐私保护遮罩",
+                "新增 手动导入旧自动化及配套界面",
+                "新增 公告支持设置版本范围",
+                "新增 toast 通知服务，支持按钮回调",
+                "优化 使用 PyInstaller 替代 Nuitka，大幅加快构建速度",
+                "修复 lite版打包文件名异常",
+                "修复 退出时逻辑不合理",
+                "重构 发行中心 CLI 与发版流程"
+            ],
+            "downloads": [
+                {
+                    "channel": "default",
+                    "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.2.2b1/EasiAuto_v1.2.2b1.zip",
+                    "sha256": "7e05db72db1509b4a6fec6bcbf4a540af3224557da3bbad92c6296a482c6f882"
+                },
+                {
+                    "channel": "lite",
+                    "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.2.2b1/EasiAuto_v1.2.2b1_lite.zip",
+                    "sha256": "8758a47181fdb94b64705c350355417dc1e913ab027efcbace12cdc16368b5d2"
                 }
             ]
         }
