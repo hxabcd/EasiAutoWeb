@@ -1,6 +1,6 @@
 {
     "latest": "1.2.1",
-    "latest_dev": "1.2.2b1",
+    "latest_dev": "1.2.2b2",
     "versions": {
         "1.0.0": {
             "is_dev": false,
@@ -457,6 +457,34 @@
                     "channel": "lite",
                     "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.2.2b1/EasiAuto_v1.2.2b1_lite.zip",
                     "sha256": "8758a47181fdb94b64705c350355417dc1e913ab027efcbace12cdc16368b5d2"
+                }
+            ]
+        },
+        "1.2.2b2": {
+            "is_dev": true,
+            "confirm_required": false,
+            "description": null,
+            "highlights": [],
+            "others": [
+                "新增 设置页单选组件",
+                "新增 持久化公告忽略状态与上次检查更新时间",
+                "优化 配置页面描述文本",
+                "优化 等待时间上限上调至 30 秒",
+                "优化 移除档案编辑中的冗余信息",
+                "优化 二维码登录-动态修补 DLL 保持未来版本兼容性",
+                "优化 二维码登录-希沃白板退出登录请求不再无条件拦截",
+                "优化 二维码登录-非 EasiAuto 档案账户登录后可正常销毁 token"
+            ],
+            "downloads": [
+                {
+                    "channel": "default",
+                    "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.2.2b2/EasiAuto_v1.2.2b2.zip",
+                    "sha256": "846f71a95c1d0e4d2051fe6194429f8dbe647096e3989b045a0de7ed2ff50d6a"
+                },
+                {
+                    "channel": "lite",
+                    "url": "https://github.com/hxabcd/EasiAuto/releases/download/v1.2.2b2/EasiAuto_v1.2.2b2_lite.zip",
+                    "sha256": "add97a64920551c824e6f0ce9d392e7c0e8770756109d293aa7ac474d0288f43"
                 }
             ]
         }
