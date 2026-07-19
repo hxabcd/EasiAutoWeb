@@ -1,7 +1,10 @@
 allowBuilds:
   cn-font-split: true
+  esbuild: true
   koffi: true
   protobufjs: true
+  sharp: true
+  workerd: true
 
 ignoredBuiltDependencies:
   - koffi
@@ -9,3 +12,6 @@ ignoredBuiltDependencies:
 
 onlyBuiltDependencies:
   - cn-font-split
+  - esbuild
+  - sharp
+  - workerd
