@@ -31,11 +31,11 @@ href="https://qm.qq.com/q/bFXGjjDENG"
             <QqIcon size="24" />
           </a>
           <a
-            href="https://space.BilibiliIcon.com/401002238"
+            href="https://space.bilibili.com/401002238"
             target="_blank"
             rel="noopener"
             class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800/50 text-gray-400 hover:text-primary hover:bg-gray-800 transition-all"
-            title="BilibiliIcon"
+            title="哔哩哔哩"
           >
             <BilibiliIcon size="24" />
           </a>
