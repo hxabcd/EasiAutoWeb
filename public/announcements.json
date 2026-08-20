@@ -7,10 +7,10 @@
             "severity": "warning",
             "start_at": null,
             "end_at": null,
-            "published_at": "2026-06-13T03:21:21.637750",
+            "published_at": "2026-08-20T15:38:23.338391",
             "link": "",
             "min_version": "1.2.2b1",
-            "max_version": "1.2.2"
+            "max_version": "1.2.2b3"
         },
         {
             "id": "730d2423-f65b-4b69-a75e-d2f976e1530c",
