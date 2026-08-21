@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: #00c884;
+  --color-primary-dark: #00a06d;
+  --color-primary-light: #33d39d;
+  --color-dark: #0f172a;
+  --color-dark-light: #1e293b;
+  --color-border-green: #05f175;
+  --color-title-green: #cdffe4;
+  --color-subtitle-green: #e1efe4;
+  --color-gradient-top: #3c7557;
+  --color-gradient-bottom: #0ba349;
+  --font-sans: "HarmonyOS Sans SC", system-ui, -apple-system, sans-serif;
+}
+
+/*
+ * HarmonyOS Sans SC 中文分包字体（public/fonts/harmonyos.css）
+ * 由 cn-font-split 离线预生成为带 unicode-range 的 woff2 分包，
+ * 浏览器只下载页面实际用到的字符分包。
+ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-dark);
+  color: #e2e8f0;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-border-green hover:opacity-90 transition-all duration-300 px-8 py-3 rounded-full font-semibold text-black shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply border border-white/30 hover:border-border-green transition-all duration-300 px-8 py-3 rounded-full font-semibold text-white hover:text-border-green;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10;
+  }
+}
+
+/* 动画完成后才启用 hover 效果 */
+.card-hover.animate-on-scroll {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.card-hover.animate-on-scroll.animated {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out,
+    box-shadow 0.3s ease-out;
+}
+
+.card-hover.animate-on-scroll.animated:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 20px 25px -5px rgba(0, 200, 132, 0.1);
+}
+
+/* 滚动触发动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 基础动画类 */
+.animate-fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* 当元素进入视口时触发动画 */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  /* 滚动边距，确保动画在元素进入视口前就开始 */
+  scroll-margin: 100px;
+}
+
+/* 使用 CSS 变量控制动画延迟 */
+.animate-delay-100 { transition-delay: 0.1s; }
+.animate-delay-200 { transition-delay: 0.2s; }
+.animate-delay-300 { transition-delay: 0.3s; }
+.animate-delay-400 { transition-delay: 0.4s; }
+.animate-delay-500 { transition-delay: 0.5s; }
+.animate-delay-600 { transition-delay: 0.6s; }
+.animate-delay-700 { transition-delay: 0.7s; }
+.animate-delay-800 { transition-delay: 0.8s; }
+.animate-delay-900 { transition-delay: 0.9s; }
+.animate-delay-1000 { transition-delay: 1s; }

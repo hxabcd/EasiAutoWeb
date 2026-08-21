@@ -10,7 +10,13 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.nuxt
+.output
+.data
 *.local
+.zcode
+.wrangler
+gui-test-screenshots
 
 # Editor directories and files
 .vscode/*
