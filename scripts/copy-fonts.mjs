@@ -33,3 +33,13 @@ for (const weight of WEIGHTS) {
 writeFileSync(join(outDir, 'harmonyos.css'), css)
 
 console.log(`fonts: ${WEIGHTS.length} weights, ${chunks} woff2 chunks -> .output/public/fonts/`)
+
+// 清理 Nitro 在 Cloudflare 环境下生成的部署重定向（cloudflare-module 预设产物）。
+// 本站是纯静态 SSG（nuxi generate），没有 worker 入口（index.mjs），
+// 重定向会让 `wrangler deploy` 找不到入口而失败；
+// 清掉后 wrangler 回落到仓库根目录的 wrangler.jsonc（静态资产模式，指向 .output/public）。
+const repoRoot = fileURLToPath(new URL('..', import.meta.url))
+for (const dir of ['.wrangler', '.output/server']) {
+  rmSync(join(repoRoot, dir), { recursive: true, force: true })
+  console.log(`cleanup: removed ${dir}`)
+}
