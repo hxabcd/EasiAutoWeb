@@ -10,7 +10,8 @@
             "published_at": "2026-08-23T15:54:58.738370",
             "link": "https://qm.qq.com/q/39NP1oNODC",
             "min_version": null,
-            "max_version": null
+            "max_version": null,
+            "targets": ["desktop", "web"]
         },
         {
             "id": "4a22a88f-49d4-4f2d-9c7c-3f6d96b66653",
