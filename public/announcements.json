@@ -1,6 +1,18 @@
 {
     "announcements": [
         {
+            "id": "730d2423-f65b-4f69-a75e-d2f976e1530c",
+            "title": "Q群现已开放",
+            "content": "加入 EasiAuto 用户群组，交流使用心得、反馈问题并获取最新版本信息！",
+            "severity": "info",
+            "start_at": null,
+            "end_at": null,
+            "published_at": "2026-08-23T15:54:58.738370",
+            "link": "https://qm.qq.com/q/39NP1oNODC",
+            "min_version": null,
+            "max_version": null
+        },
+        {
             "id": "4a22a88f-49d4-4f2d-9c7c-3f6d96b66653",
             "title": "注意 [1.2.2b1]",
             "content": "“二维码登录”首次需管理员权限替换 DLL。若未更新至测试版，可忽略此公告。",
@@ -11,19 +23,6 @@
             "link": "",
             "min_version": "1.2.2b1",
             "max_version": "1.2.2b3"
-        },
-        {
-            "id": "730d2423-f65b-4f69-a75e-d2f976e1530c",
-            "title": "TIP",
-            "content": "EasiAuto QQ 用户群组现已开放：1004364137",
-            "severity": "info",
-            "start_at": null,
-            "end_at": null,
-            "published_at": "2026-06-28T16:44:30.808787",
-            "link": "https://qm.qq.com/q/39NP1oNODC",
-            "min_version": null,
-            "max_version": null,
-            "targets": ["desktop", "web"]
         }
     ]
 }
