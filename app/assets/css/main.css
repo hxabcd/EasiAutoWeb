@@ -46,12 +46,19 @@ body {
     @apply border border-white/30 hover:border-border-green transition-all duration-300 px-8 py-3 rounded-full font-semibold text-white hover:text-border-green;
   }
 
+  /* 卡片上浮：统一使用 transform。Tailwind 的 translate 属性不参与过渡，
+     且会与下方基于 transform 的 hover 叠加成双重上浮（0.5rem），故不使用
+     hover:-translate-y-*。 */
   .card-hover {
-    @apply hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  .card-hover:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 8px 16px -4px rgba(0, 200, 132, 0.08);
   }
 }
 
-/* 动画完成后才启用 hover 效果 */
+/* 动画完成后才启用 hover 效果（入场期间插件会用内联 transform 覆盖，故不会提前上浮） */
 .card-hover.animate-on-scroll {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
