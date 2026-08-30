@@ -188,8 +188,8 @@ const latestAnnouncement = computed(() => webAnnouncements.value[0] || null)
 // 浅色窗口截图：三行平铺，行间起点错开，平移方向左-右-左交错
 const lightShots = [
   "/images/light/oobe-welcome.webp",
-  "/images/light/setting.webp",
   "/images/light/ci-auto-edit.webp",
+  "/images/light/setting.webp",
   "/images/light/profile-edit.webp",
   "/images/light/update.webp",
   "/images/light/oobe-login-method.webp",
