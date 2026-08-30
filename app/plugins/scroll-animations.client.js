@@ -13,7 +13,12 @@ export default defineNuxtPlugin((nuxtApp) => {
             element.style.opacity = '1'
             element.style.transform = 'translateY(0)'
             // 动画完成后添加 animated 类，启用 hover 效果
-            setTimeout(() => element.classList.add('animated'), 600)
+            setTimeout(() => {
+              element.classList.add('animated')
+              // 清除内联样式，让 CSS 状态接管，避免覆盖 hover 效果
+              element.style.opacity = ''
+              element.style.transform = ''
+            }, 600)
             observer.unobserve(element)
           }
         })

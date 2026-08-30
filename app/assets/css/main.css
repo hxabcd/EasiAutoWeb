@@ -47,7 +47,7 @@ body {
   }
 
   .card-hover {
-    @apply hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10;
+    @apply hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5;
   }
 }
 
@@ -56,14 +56,22 @@ body {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+/* 滚动入场结束后的静止状态 */
+.animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .card-hover.animate-on-scroll.animated {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out,
     box-shadow 0.3s ease-out;
+  /* 入场动画结束后清除延迟，避免影响 hover 的即时响应 */
+  transition-delay: 0s;
 }
 
 .card-hover.animate-on-scroll.animated:hover {
-  transform: translateY(-0.5rem);
-  box-shadow: 0 20px 25px -5px rgba(0, 200, 132, 0.1);
+  transform: translateY(-0.25rem);
+  box-shadow: 0 8px 16px -4px rgba(0, 200, 132, 0.08);
 }
 
 /* 滚动触发动画 */
