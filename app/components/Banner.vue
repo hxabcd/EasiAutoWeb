@@ -88,8 +88,8 @@
       </div>
     </div>
 
-    <div class="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 lg:mx-0">
-      <div ref="cardRef" class="glass-card backdrop-blur-[20px] mx-auto max-w-5xl card-entrance lg:mx-0 lg:ml-24">
+    <div class="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:mx-0">
+      <div ref="cardRef" class="glass-card backdrop-blur-[18px] mx-auto max-w-5xl card-entrance lg:mx-0 lg:ml-30">
         <div
           class="flex flex-col lg:flex-row items-center gap-6 lg:gap-20 py-6 lg:py-14 px-4 sm:px-6 lg:px-20"
         >
