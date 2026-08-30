@@ -2,11 +2,11 @@
   <header
     class="fixed top-0 left-0 right-0 z-50 bg-dark/80 backdrop-blur-md border-b border-gray-800"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <!-- 左侧：Logo + 导航 -->
         <div class="flex items-center gap-6 lg:gap-8 min-w-0">
-          <NuxtLink to="/" class="flex items-center gap-3 cursor-pointer shrink-0">
+          <NuxtLink to="/" class="flex items-center gap-2 sm:gap-3 cursor-pointer shrink-0">
             <img
               src="/images/logo.webp"
               alt="EasiAuto Logo"
@@ -37,10 +37,10 @@
         </div>
 
         <!-- 右侧：仅下载按钮 -->
-        <div class="flex items-center gap-3 shrink-0">
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
           <NuxtLink
             to="/download"
-            class="text-sm font-semibold inline-flex items-center gap-2 px-5 py-2 rounded-full bg-border-green hover:opacity-90 text-black shadow-lg transition-all"
+            class="text-sm font-semibold inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-border-green hover:opacity-90 text-black shadow-lg transition-all"
           >
             <Icon name="lucide:download" class="w-4 h-4" />
             立即下载

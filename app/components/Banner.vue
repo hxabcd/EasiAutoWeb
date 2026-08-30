@@ -1,7 +1,7 @@
 <template>
   <section
     ref="sectionRef"
-    class="relative z-10 min-h-[calc(100vh-4rem)] flex items-center justify-center pt-0 lg:pt-10"
+    class="relative z-10 min-h-[calc(100vh-4rem)] flex items-center justify-center lg:justify-start pt-16 lg:pt-10"
   >
     <!-- 公告条 - 悬浮于 Banner 区顶部，不占文档流空间 -->
     <div
@@ -11,10 +11,10 @@
       <AnnouncementBanner :item="latestAnnouncement" />
     </div>
 
-    <!-- 警告横幅 - 仅桌面端；空间足够（不遮挡主卡片）时才渲染，避免隐藏状态下空转 -->
+    <!-- 警告横幅 - 空间足够（不遮挡主卡片）时才渲染，避免隐藏状态下空转 -->
     <div
       v-if="showBanner && bannerFits"
-      class="absolute top-14 left-0 right-0 z-40 hidden lg:block banner-fade-in"
+      class="absolute top-14 left-0 right-0 z-40 banner-fade-in"
     >
       <WarningBanner />
       <button
@@ -29,83 +29,67 @@
       class="absolute inset-0 bg-linear-to-tl from-gradient-top to-gradient-bottom"
     ></div>
 
-    <!-- 右侧窗口展示 -->
+    <!-- 左侧装饰：柔光斑 + 点阵，避免渐变底过空 -->
     <div
-      class="absolute right-0 top-0 w-full h-full overflow-hidden pointer-events-none hidden lg:block select-none"
+      class="absolute inset-0 overflow-hidden pointer-events-none select-none"
+      aria-hidden="true"
     >
-      <!-- 主窗口 - 设置页面 -->
       <div
-        class="absolute right-[-260px] top-[60%] -translate-y-1/2 w-[680px] perspective-1000 bg-element z-20 window-3d"
-        style="animation-delay: 0.3s"
-      >
-        <img
-          src="/images/setting.webp"
-          alt="设置页面"
-          class="w-full h-auto rounded-xl shadow-2xl float-animation"
-          style="--float-delay: 0s"
-          draggable="false"
-        />
-      </div>
+        class="glow-orb absolute -top-40 -left-24 w-[30rem] h-[30rem] rounded-full bg-white/10 blur-3xl"
+      ></div>
+      <div
+        class="glow-orb absolute top-1/3 left-[30%] w-80 h-80 rounded-full bg-emerald-200/15 blur-3xl"
+        style="animation-delay: -6s"
+      ></div>
+      <div
+        class="glow-orb absolute -bottom-32 left-10 w-[26rem] h-[26rem] rounded-full bg-[#05f175]/15 blur-3xl"
+        style="animation-delay: -12s"
+      ></div>
+      <div class="absolute inset-0 dot-grid opacity-20 lg:right-[60%]"></div>
+    </div>
 
-      <!-- 左上窗口 - 运行前警告 -->
+    <!-- 背景：浅色窗口截图倾斜平铺（桌面端集中在右侧），三行左-右-左交错缓慢平移 -->
+    <div
+      class="absolute inset-0 overflow-hidden pointer-events-none select-none hidden lg:block lg:left-[40%] lg:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.5)_18%,black_34%)]"
+      aria-hidden="true"
+    >
       <div
-        class="absolute right-[520px] top-[12%] w-[360px] perspective-1000 bg-element z-15 window-3d"
-        style="animation-delay: 0.5s"
+        class="absolute inset-[-60%] flex flex-col justify-center gap-6 lg:gap-8 rotate-20"
       >
-        <img
-          src="/images/warning.webp"
-          alt="运行前警告"
-          class="w-full h-auto rounded-xl shadow-xl float-animation"
-          style="--float-delay: 0.3s"
-          draggable="false"
-        />
-      </div>
-
-      <!-- 右上窗口 - 更新页面 -->
-      <div
-        class="absolute right-[-30px] top-[5%] w-[680px] perspective-1000 bg-element z-10 window-3d"
-        style="animation-delay: 0.6s"
-      >
-        <img
-          src="/images/update.webp"
-          alt="更新页面"
-          class="w-full h-auto rounded-xl shadow-xl float-animation"
-          style="--float-delay: 0.6s"
-          draggable="false"
-        />
-      </div>
-
-      <!-- 中间窗口 - 关于页面 -->
-      <div
-        class="absolute right-[100px] top-[35%] w-[680px] perspective-1000 bg-element z-15 window-3d"
-        style="animation-delay: 0.65s"
-      >
-        <img
-          src="/images/about.webp"
-          alt="关于页面"
-          class="w-full h-auto rounded-xl shadow-xl float-animation"
-          style="--float-delay: 0.75s"
-          draggable="false"
-        />
-      </div>
-
-      <!-- 左下窗口 - 自动化页 -->
-      <div
-        class="absolute right-[80px] bottom-[-15%] w-[680px] perspective-1000 bg-element z-10 window-3d"
-        style="animation-delay: 0.7s"
-      >
-        <img
-          src="/images/ciautoedit.webp"
-          alt="自动化页"
-          class="w-full h-auto rounded-xl shadow-xl float-animation"
-          style="--float-delay: 0.9s"
-          draggable="false"
-        />
+        <div
+          v-for="(row, rowIndex) in tileRows"
+          :key="rowIndex"
+          class="tile-row"
+        >
+          <div
+            class="tile-track"
+            :class="{ 'tile-track-reverse': rowIndex % 2 === 1 }"
+          >
+            <img
+              v-for="(src, i) in row"
+              :key="i"
+              :src="src"
+              alt=""
+              decoding="async"
+              class="tile-img"
+              draggable="false"
+            />
+            <img
+              v-for="(src, i) in row"
+              :key="i + row.length"
+              :src="src"
+              alt=""
+              decoding="async"
+              class="tile-img"
+              draggable="false"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div ref="cardRef" class="glass-card backdrop-blur-[10px] mx-auto max-w-5xl card-entrance">
+    <div class="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 lg:mx-0">
+      <div ref="cardRef" class="glass-card backdrop-blur-[20px] mx-auto max-w-5xl card-entrance lg:mx-0 lg:ml-24">
         <div
           class="flex flex-col lg:flex-row items-center gap-6 lg:gap-20 py-6 lg:py-14 px-4 sm:px-6 lg:px-20"
         >
@@ -114,7 +98,7 @@
             style="--delay: 0.1s"
           >
             <div
-              class="w-48 h-48 lg:w-80 lg:h-80 flex items-center justify-center"
+              class="w-32 h-32 lg:w-80 lg:h-80 flex items-center justify-center"
             >
               <img
                 src="/images/logo.webp"
@@ -201,6 +185,23 @@ const { latestVersion } = useVersionData()
 const { webAnnouncements } = useAnnouncements()
 const latestAnnouncement = computed(() => webAnnouncements.value[0] || null)
 
+// 浅色窗口截图：三行平铺，行间起点错开，平移方向左-右-左交错
+const lightShots = [
+  "/images/light/oobe-welcome.webp",
+  "/images/light/setting.webp",
+  "/images/light/ci-auto-edit.webp",
+  "/images/light/profile-edit.webp",
+  "/images/light/update.webp",
+  "/images/light/oobe-login-method.webp",
+  "/images/light/pre-run-popup.webp",
+  "/images/light/oobe-patch.webp",
+]
+
+// 每行为错开起点的一份序列，模板中渲染两份以实现无缝循环
+const tileRows = [0, 1, 2].map((row) => {
+  return [...lightShots.slice(row * 3), ...lightShots.slice(0, row * 3)]
+})
+
 // 横幅区域由 section 几何推算（absolute top-14 即 56px，高 110px），
 // 不测量横幅自身——v-show 隐藏时它的矩形是全零，会导致误判
 // 间距阈值为 -16：横幅底部最多可遮挡主卡片顶部 16px，此时仍显示
@@ -210,7 +211,9 @@ const checkOverlap = () => {
   if (!section || !card) return
   const s = section.getBoundingClientRect()
   const c = card.getBoundingClientRect()
-  const bannerBottom = s.top + 56 + 110
+  // 横幅 top-14 即 56px；高度移动端收窄为 88px，桌面端 110px
+  const bannerHeight = window.matchMedia('(max-width: 640px)').matches ? 88 : 110
+  const bannerBottom = s.top + 56 + bannerHeight
   bannerFits.value = bannerBottom <= c.top + 16
 }
 
@@ -355,41 +358,65 @@ const closeBanner = () => {
   }
 }
 
-/* 背景元素动画 */
-.bg-element {
-  opacity: 0;
-  animation: bgFadeIn 1.2s ease forwards;
+/* 倾斜平铺窗口背景：行间水平错位，行轨道无缝平移 */
+.tile-row:nth-child(2) {
+  transform: translateX(-14%);
 }
 
-@keyframes bgFadeIn {
+.tile-row:nth-child(3) {
+  transform: translateX(-7%);
+}
+
+.tile-track {
+  display: flex;
+  width: max-content;
+  animation: tilePan 300s linear infinite;
+}
+
+.tile-track-reverse {
+  animation-direction: reverse;
+}
+
+.tile-img {
+  height: clamp(220px, 32vh, 400px);
+  width: auto;
+  margin-right: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes tilePan {
   to {
-    opacity: 1;
+    transform: translateX(-50%);
   }
 }
 
-/* 3D 窗口容器 */
-.window-3d {
-  transform-style: preserve-3d;
+/* 左侧装饰：光斑缓慢漂移 + 点阵纹理 */
+.glow-orb {
+  animation: orbDrift 18s ease-in-out infinite alternate;
 }
 
-.window-3d img {
-  transform: rotateX(26deg) rotateY(18deg);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
-}
-
-/* 浮动动画 */
-.float-animation {
-  animation: float 6s ease-in-out infinite;
-  animation-delay: var(--float-delay, 0s);
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: rotateX(26deg) rotateY(18deg) translateY(0px);
+@keyframes orbDrift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
   }
-  50% {
-    transform: rotateX(26deg) rotateY(18deg) translateY(-10px);
+  to {
+    transform: translate3d(3rem, -2rem, 0) scale(1.08);
+  }
+}
+
+.dot-grid {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.45) 1.5px,
+    transparent 1.5px
+  );
+  background-size: 30px 30px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-track,
+  .glow-orb {
+    animation: none;
   }
 }
 

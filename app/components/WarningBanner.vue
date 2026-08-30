@@ -181,4 +181,20 @@ onUnmounted(() => {
   text-transform: uppercase;
   flex-shrink: 0;
 }
+
+/* 移动端：适度收窄横幅高度与字号，避免大字号在窄屏被裁剪/溢出 */
+@media (max-width: 640px) {
+  .warning-banner {
+    height: 88px;
+  }
+  .stripe-container {
+    height: 16px;
+  }
+  .divider-line {
+    height: 1px;
+  }
+  .warning-text {
+    font-size: 2rem;
+  }
+}
 </style>

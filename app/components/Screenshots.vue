@@ -64,10 +64,11 @@ const activeTab = ref(0)
 let autoPlayInterval = null
 
 const tabs = [
-  { name: "设置页面", image: "/images/setting.webp" },
-  { name: "自动化页", image: "/images/ciautoedit.webp" },
-  { name: "更新页面", image: "/images/update.webp" },
-  { name: "运行前警告", image: "/images/warning.webp" },
+  { name: "设置页面", image: "/images/light/setting.webp" },
+  { name: "自动化页", image: "/images/light/ci-auto-edit.webp" },
+  { name: "档案编辑", image: "/images/light/profile-edit.webp" },
+  { name: "更新页面", image: "/images/light/update.webp" },
+  { name: "运行前警告", image: "/images/light/pre-run-popup.webp" },
 ]
 
 const setActiveTab = (index) => {
