@@ -187,15 +187,18 @@ const latestAnnouncement = computed(() => webAnnouncements.value[0] || null)
 
 // 浅色窗口截图：三行平铺，行间起点错开，平移方向左-右-左交错
 const lightShots = [
-  "/images/light/oobe-welcome.webp",
-  "/images/light/ci-auto-edit.webp",
-  "/images/light/setting.webp",
-  "/images/light/profile-edit.webp",
-  "/images/light/update.webp",
-  "/images/light/oobe-login-method.webp",
-  "/images/light/pre-run-popup.webp",
+  "/images/light/update-check.webp",
   "/images/light/oobe-patch.webp",
-]
+  "/images/light/oobe-login-method.webp",
+  "/images/light/setting2.webp",
+  "/images/light/profile-edit.webp",
+  "/images/light/setting.webp",
+  "/images/light/pre-run-popup.webp",
+  "/images/light/update-log.webp",
+  "/images/light/ci-running.webp",
+  "/images/light/ci-auto-edit.webp",
+  "/images/light/oobe-welcome.webp",
+  ]
 
 // 每行为错开起点的一份序列，模板中渲染两份以实现无缝循环
 const tileRows = [0, 1, 2].map((row) => {
@@ -378,7 +381,7 @@ const closeBanner = () => {
 }
 
 .tile-img {
-  height: clamp(220px, 32vh, 400px);
+  height: clamp(180px, 26vh, 320px);
   width: auto;
   margin-right: 1.5rem;
   border-radius: 0.75rem;
