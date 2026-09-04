@@ -132,6 +132,17 @@
               显示警告横幅（WarningBanner）
             </label>
           </div>
+
+          <!-- 自定义版本号 -->
+          <div>
+            <label class="block text-sm text-gray-400 mb-1">自定义版本号</label>
+            <input
+              v-model="demoVersion"
+              type="text"
+              placeholder="如 2.1.0（留空使用默认版本）"
+              class="demo-input"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -141,7 +152,7 @@
 <script setup>
 import { toPng, toJpeg } from "html-to-image"
 
-const { demoMode, exitDemoMode, toggleFullscreen, bannerVisible } = useDemoMode()
+const { demoMode, exitDemoMode, toggleFullscreen, bannerVisible, demoVersion } = useDemoMode()
 
 // 全屏状态跟随浏览器事件更新
 const isFullscreen = ref(false)

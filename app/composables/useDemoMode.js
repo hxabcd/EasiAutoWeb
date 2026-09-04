@@ -7,6 +7,9 @@ const demoMode = ref(false)
 // 演示模式下是否显示警告横幅（设置弹窗可切换）
 const bannerVisible = ref(true)
 
+// 演示模式下自定义版本号（空字符串 = 使用默认最新版本）
+const demoVersion = ref("")
+
 // Esc 仅退出全屏（若处于全屏），不退出演示模式
 const onKeyDown = (e) => {
   if (e.key === "Escape" && document.fullscreenElement) {
@@ -26,8 +29,9 @@ export function useDemoMode() {
    */
   const enterDemoMode = async () => {
     demoMode.value = true
-    // 每次进入演示模式重新显示警告横幅，设置项仅对本次演示有效
+    // 每次进入演示模式重新显示警告横幅、重置自定义版本号，设置项仅对本次演示有效
     bannerVisible.value = true
+    demoVersion.value = ""
     await router.push("/demo")
   }
 
@@ -61,5 +65,5 @@ export function useDemoMode() {
     document.addEventListener("keydown", onKeyDown)
   }
 
-  return { demoMode, bannerVisible, enterDemoMode, exitDemoMode, toggleFullscreen }
+  return { demoMode, bannerVisible, demoVersion, enterDemoMode, exitDemoMode, toggleFullscreen }
 }

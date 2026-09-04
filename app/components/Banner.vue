@@ -129,8 +129,8 @@
               >
                 EasiAuto
               </h1>
-              <span v-if="latestVersion" class="version-tag mb-2 herodesk:mb-[0.78125cqw]">{{
-                latestVersion.split(".").slice(0, 2).join(".")
+              <span v-if="displayVersion" class="version-tag mb-2 herodesk:mb-[0.78125cqw]">{{
+                displayVersion
               }}</span>
             </div>
 
@@ -192,10 +192,18 @@ const bannerFits = ref(false)
 const sectionRef = ref(null)
 const cardRef = ref(null)
 
-const { demoMode, bannerVisible } = useDemoMode()
+const { demoMode, bannerVisible, demoVersion } = useDemoMode()
 const { latestVersion } = useVersionData()
 const { webAnnouncements } = useAnnouncements()
 const latestAnnouncement = computed(() => webAnnouncements.value[0] || null)
+
+// 演示模式下优先显示自定义版本号，否则显示默认最新版本（取前两段）
+const displayVersion = computed(() => {
+  if (demoVersion.value) {
+    return demoVersion.value.split(".").slice(0, 2).join(".")
+  }
+  return latestVersion.value.split(".").slice(0, 2).join(".")
+})
 
 // 演示模式切换（隐藏按钮/横幅）会导致卡片几何变化，重新测量横幅是否遮挡
 watch(demoMode, () => {
