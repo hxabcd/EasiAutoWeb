@@ -463,7 +463,7 @@ const closeBanner = () => {
   height: clamp(180px, 26vh, 320px);
   width: auto;
   margin-right: 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.35);
 }
 

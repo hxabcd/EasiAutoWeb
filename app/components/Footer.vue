@@ -11,7 +11,7 @@
             />
             <span class="text-xl font-bold text-white">EasiAuto</span>
           </div>
-          <p class="text-gray-500 text-sm">
+          <p class="text-gray-500 text-sm text-center md:text-left">
             © {{ new Date().getFullYear() }}
             <a
               href="https://github.com/hxabcd"

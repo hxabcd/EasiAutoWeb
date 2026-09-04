@@ -48,7 +48,7 @@
         <div>
           <div class="font-semibold">完整版</div>
           <div class="text-xs text-gray-900/80">
-            {{ fullAvailable ? `功能完整` : '当前不可用' }}
+            {{ fullAvailable ? `含增强组件` : '当前不可用' }}
           </div>
         </div>
       </button>
