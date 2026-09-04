@@ -23,6 +23,14 @@
             <span class="hidden md:inline px-2">|</span>
             <br class="md:hidden" />
             Licensed under GPL v3.
+            <span class="hidden md:inline px-2">|</span>
+            <br class="md:hidden" />
+            <a
+              href="/demo"
+              class="text-gray-400 hover:text-primary transition-colors underline decoration-gray-600 hover:decoration-primary"
+              @click.prevent="enterDemoMode"
+              >演示模式</a
+            >
           </p>
         </div>
 
@@ -59,3 +67,7 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+const { enterDemoMode } = useDemoMode()
+</script>

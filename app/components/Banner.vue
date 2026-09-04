@@ -3,10 +3,11 @@
     ref="sectionRef"
     :style="{ '--hero-t': heroT }"
     class="relative z-10 min-h-[calc(100vh-4rem)] flex items-center justify-center herodesk:justify-start pt-16 herodesk:pt-10"
+    :class="{ 'demo-mode min-h-screen pt-0 herodesk:pt-0' : demoMode }"
   >
     <!-- 公告条 - 悬浮于 Banner 区顶部，不占文档流空间 -->
     <div
-      v-if="latestAnnouncement"
+      v-if="latestAnnouncement && !demoMode"
       class="absolute top-2 left-1/2 -translate-x-1/2 z-40 w-full max-w-2xl px-4"
     >
       <AnnouncementBanner :item="latestAnnouncement" />
@@ -14,11 +15,12 @@
 
     <!-- 警告横幅 - 空间足够（不遮挡主卡片）时才渲染，避免隐藏状态下空转 -->
     <div
-      v-if="showBanner && bannerFits"
+      v-if="showBanner && bannerFits && bannerVisible"
       class="absolute top-14 left-0 right-0 z-40 banner-fade-in"
     >
       <WarningBanner :height="bannerHeightPx" />
       <button
+        v-if="!demoMode"
         @click="closeBanner"
         class="absolute -bottom-6 right-2 w-4 h-4 flex items-center justify-center bg-black/40 hover:bg-black/60 rounded-full transition-colors z-50 shadow-lg"
       >
@@ -150,6 +152,7 @@
             </p>
 
             <div
+              v-if="!demoMode"
               class="flex flex-col sm:flex-row gap-4 herodesk:gap-[1.5625cqw] pt-4 herodesk:pt-[1.5625cqw] card-item items-center justify-center herodesk:justify-start w-full sm:w-auto"
               style="--delay: 0.5s"
             >
@@ -173,6 +176,7 @@
 
     <!-- 下滑提示 -->
     <div
+      v-if="!demoMode"
       class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 cursor-pointer hover:text-white transition-colors scroll-hint"
       @click="scrollToContent"
     >
@@ -188,9 +192,15 @@ const bannerFits = ref(false)
 const sectionRef = ref(null)
 const cardRef = ref(null)
 
+const { demoMode, bannerVisible } = useDemoMode()
 const { latestVersion } = useVersionData()
 const { webAnnouncements } = useAnnouncements()
 const latestAnnouncement = computed(() => webAnnouncements.value[0] || null)
+
+// 演示模式切换（隐藏按钮/横幅）会导致卡片几何变化，重新测量横幅是否遮挡
+watch(demoMode, () => {
+  nextTick(checkOverlap)
+})
 
 // 浅色窗口截图：三行平铺，行间起点错开，平移方向左-右-左交错
 const lightShots = [
@@ -288,6 +298,19 @@ const closeBanner = () => {
 </script>
 
 <style scoped>
+/* 演示模式：填充整个视口（隐藏顶栏后），!important 保证覆盖 Tailwind 工具类 */
+.demo-mode {
+  padding-top: 0 !important;
+  min-height: 100vh !important;
+}
+
+/* 桌面端演示模式：隐藏按钮后去掉固定 11:5 比例，卡片高度随内容收缩 */
+@media (min-aspect-ratio: 8/9) {
+  .demo-mode .hero-card {
+    aspect-ratio: auto;
+  }
+}
+
 /* 主卡片 */
 .hero-card {
   background: rgba(0, 0, 0, 0.4);
