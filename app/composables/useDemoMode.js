@@ -44,6 +44,10 @@ export function useDemoMode() {
     } catch {
       // 全屏已退出时忽略
     }
+    // 若仍在演示页（含 /demo/ 等带斜杠路径），直接返回首页
+    if (router.currentRoute.value.path.startsWith("/demo")) {
+      await router.push("/")
+    }
   }
 
   /** 切换浏览器全屏（独立于演示模式状态） */

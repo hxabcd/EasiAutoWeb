@@ -10,14 +10,8 @@ definePageMeta({ layout: false })
 const { demoMode } = useDemoMode()
 demoMode.value = true
 
-// 退出演示（Esc / 控制按钮）后自动返回首页；离开演示页时恢复全局状态
-const router = useRouter()
-watch(demoMode, (val) => {
-  if (!val && router.currentRoute.value.path === "/demo") {
-    router.push("/")
-  }
-})
-
+// 退出导航由 useDemoMode.exitDemoMode 处理；这里仅确保离开演示页时恢复全局状态
+// （如浏览器后退键直接离开 /demo 时，演示控件不会残留在其他页面）
 onUnmounted(() => {
   demoMode.value = false
 })
