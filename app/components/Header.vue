@@ -8,7 +8,7 @@
         <div class="flex items-center gap-6 lg:gap-8 min-w-0">
           <NuxtLink to="/" class="flex items-center gap-2 sm:gap-3 cursor-pointer shrink-0">
             <img
-              src="/images/logo.webp"
+              src="/images/EasiAuto.webp"
               alt="EasiAuto Logo"
               class="w-8 h-8 rounded"
             />

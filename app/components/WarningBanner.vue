@@ -1,5 +1,5 @@
 <template>
-  <div class="warning-banner">
+  <div class="warning-banner" :style="bannerStyle">
     <!-- 顶部条纹 -->
     <div class="stripe-container">
       <div class="stripes-bg"></div>
@@ -37,6 +37,22 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  // 可选高度（px）：由父组件按主卡片高度的 25% 计算传入，最大值 100px
+  height: {
+    type: Number,
+    default: null,
+  },
+})
+
+// 设计高度 110px；实际高度低于设计高度时按比例（0~1）等比缩放内部各元素，
+// 避免小高度下条纹/文字被 overflow:hidden 裁切
+const scale = computed(() => Math.min(props.height ?? 110, 100) / 110)
+const bannerStyle = computed(() => ({
+  "--banner-scale": scale.value,
+  ...(props.height ? { height: `${Math.min(props.height, 100)}px` } : {}),
+}))
+
 // 配置 - 使用像素/秒作为速度单位，确保不同帧率下速度一致
 const config = {
   text: '⚠️WARNING⚠️   正在运行希沃白板自动登录 请勿触摸一体机   ',
@@ -84,10 +100,13 @@ onUnmounted(() => {
   position: relative;
   width: 100%;
   height: 110px;
+  max-height: 100px;
   overflow: hidden;
   background-color: #e21114d5;
   display: flex;
   flex-direction: column;
+  /* 等比缩放因子：高度低于 110px 设计高度时由脚本按内联值覆盖 */
+  --banner-scale: 1;
   /* 禁止选中文本 */
   user-select: none;
   -webkit-user-select: none;
@@ -99,7 +118,7 @@ onUnmounted(() => {
 .stripe-container {
   position: relative;
   width: 100%;
-  height: 18px;
+  height: calc(18px * var(--banner-scale));
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -111,10 +130,10 @@ onUnmounted(() => {
   left: 0;
   height: 100%;
   /* 多留一个条纹周期，左移一个周期后仍能盖满容器 */
-  width: calc(100% + 28px);
+  width: calc(100% + 28px * var(--banner-scale));
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='32' viewBox='0 0 28 32'%3E%3Cpolygon points='0,32 12,0 24,0 12,32' fill='%23ffde59' fill-opacity='0.7'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 28px 32px;
+  background-size: calc(28px * var(--banner-scale)) calc(32px * var(--banner-scale));
   will-change: transform;
   /* 28px / 30px每秒 ≈ 0.9333s，位移一个周期即可无缝循环 */
   animation: stripe-scroll 0.9333s linear infinite;
@@ -122,7 +141,7 @@ onUnmounted(() => {
 
 @keyframes stripe-scroll {
   to {
-    transform: translateX(-28px);
+    transform: translateX(calc(-28px * var(--banner-scale)));
   }
 }
 
@@ -139,7 +158,7 @@ onUnmounted(() => {
 /* 分隔线 */
 .divider-line {
   width: 100%;
-  height: 2px;
+  height: calc(2px * var(--banner-scale));
   background-color: rgba(255, 222, 89, 0.6);
   flex-shrink: 0;
 }
@@ -175,26 +194,10 @@ onUnmounted(() => {
 }
 
 .warning-text {
-  font-size: 2.5rem;
+  font-size: calc(2.5rem * var(--banner-scale));
   font-weight: 700;
   color: #ffde59;
   text-transform: uppercase;
   flex-shrink: 0;
-}
-
-/* 移动端：适度收窄横幅高度与字号，避免大字号在窄屏被裁剪/溢出 */
-@media (max-width: 640px) {
-  .warning-banner {
-    height: 88px;
-  }
-  .stripe-container {
-    height: 16px;
-  }
-  .divider-line {
-    height: 1px;
-  }
-  .warning-text {
-    font-size: 2rem;
-  }
 }
 </style>

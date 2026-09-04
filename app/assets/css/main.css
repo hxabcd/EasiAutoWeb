@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* 桌面 hero 布局按视口宽高比（≥8:9）触发，而非视口宽度。
+   当前仅 Banner.vue 使用：分档 spacing:hero-card:spacing——
+   r≥14:9 → 1:12:7，10:9≤r<14:9 → 1:9:1，8:9≤r<10:9 → 9fr~22fr 线性插值。 */
+@custom-variant herodesk (@media (min-aspect-ratio: 8/9));
+@custom-variant herodesk (@media (min-aspect-ratio: 8/9));
+
 @theme {
   --color-primary: #00c884;
   --color-primary-dark: #00a06d;

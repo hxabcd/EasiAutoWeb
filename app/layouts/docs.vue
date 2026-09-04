@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen gradient-bg">
+  <div class="flex min-h-screen flex-col gradient-bg">
     <Header />
-    <main class="pt-16">
+    <main class="flex-1 pt-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="lg:flex lg:gap-10">
           <aside class="hidden lg:block w-64 shrink-0">

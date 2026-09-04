@@ -51,10 +51,10 @@ export default defineNuxtConfig({
             'EasiAuto 是一款自动登录希沃白板的小工具，旨在带来更智能、更方便、更易用的希沃白板登录体验，简化课前准备流程。',
         },
         { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: '/images/logo.webp' },
+        { property: 'og:image', content: '/images/EasiAuto.webp' },
       ],
       link: [
-        { rel: 'icon', type: 'image/webp', href: '/images/logo.webp' },
+        { rel: 'icon', type: 'image/webp', href: '/images/favicon.webp' },
         // HarmonyOS Sans SC 中文分包字体（cn-font-split 预生成）
         { rel: 'stylesheet', href: '/fonts/harmonyos.css' },
       ],

@@ -1,7 +1,8 @@
 <template>
   <section
     ref="sectionRef"
-    class="relative z-10 min-h-[calc(100vh-4rem)] flex items-center justify-center lg:justify-start pt-16 lg:pt-10"
+    :style="{ '--hero-t': heroT }"
+    class="relative z-10 min-h-[calc(100vh-4rem)] flex items-center justify-center herodesk:justify-start pt-16 herodesk:pt-10"
   >
     <!-- 公告条 - 悬浮于 Banner 区顶部，不占文档流空间 -->
     <div
@@ -16,7 +17,7 @@
       v-if="showBanner && bannerFits"
       class="absolute top-14 left-0 right-0 z-40 banner-fade-in"
     >
-      <WarningBanner />
+      <WarningBanner :height="bannerHeightPx" />
       <button
         @click="closeBanner"
         class="absolute -bottom-6 right-2 w-4 h-4 flex items-center justify-center bg-black/40 hover:bg-black/60 rounded-full transition-colors z-50 shadow-lg"
@@ -45,16 +46,16 @@
         class="glow-orb absolute -bottom-32 left-10 w-[26rem] h-[26rem] rounded-full bg-[#05f175]/15 blur-3xl"
         style="animation-delay: -12s"
       ></div>
-      <div class="absolute inset-0 dot-grid opacity-20 lg:right-[60%]"></div>
+      <div class="absolute inset-0 dot-grid opacity-20 herodesk:right-[60%]"></div>
     </div>
 
     <!-- 背景：浅色窗口截图倾斜平铺（桌面端集中在右侧），三行左-右-左交错缓慢平移 -->
     <div
-      class="absolute inset-0 overflow-hidden pointer-events-none select-none hidden lg:block lg:left-[40%] lg:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.5)_18%,black_34%)]"
+      class="absolute inset-0 overflow-hidden pointer-events-none select-none hidden herodesk:block herodesk:left-[40%] herodesk:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.5)_18%,black_34%)]"
       aria-hidden="true"
     >
       <div
-        class="absolute inset-[-60%] flex flex-col justify-center gap-6 lg:gap-8 rotate-20"
+        class="absolute inset-[-60%] flex flex-col justify-center gap-6 herodesk:gap-8 rotate-20"
       >
         <div
           v-for="(row, rowIndex) in tileRows"
@@ -88,20 +89,26 @@
       </div>
     </div>
 
-    <div class="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:mx-0">
-      <div ref="cardRef" class="glass-card backdrop-blur-[18px] mx-auto max-w-5xl card-entrance lg:mx-0 lg:ml-30">
+    <div
+      class="hero-grid relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 herodesk:max-w-[1920px] herodesk:px-0"
+    >
+      <div
+        ref="cardRef"
+        class="hero-card backdrop-blur-[18px] mx-auto max-w-5xl card-entrance herodesk:mx-0 herodesk:max-w-none herodesk:col-start-2 herodesk:aspect-[11/5] @container"
+        :class="{ 'is-resizing': isResizing }"
+      >
         <div
-          class="flex flex-col lg:flex-row items-center gap-6 lg:gap-20 py-6 lg:py-14 px-4 sm:px-6 lg:px-20"
+          class="flex flex-col herodesk:flex-row items-center gap-6 herodesk:gap-[7.8125cqw] py-6 herodesk:py-[5.46875cqw] px-4 sm:px-6 herodesk:px-[7.8125cqw]"
         >
           <div
-            class="w-full lg:w-1/3 flex items-center justify-center card-item"
+            class="w-full herodesk:w-1/3 flex items-center justify-center card-item"
             style="--delay: 0.1s"
           >
             <div
-              class="w-32 h-32 lg:w-80 lg:h-80 flex items-center justify-center"
+              class="w-32 h-32 herodesk:w-[28cqw] herodesk:h-[28cqw] flex items-center justify-center"
             >
               <img
-                src="/images/logo.webp"
+                src="/images/EasiAuto.webp"
                 alt="EasiAuto Logo"
                 class="max-w-full max-h-full object-contain"
               />
@@ -109,31 +116,31 @@
           </div>
 
           <div
-            class="w-full lg:w-3/4 flex flex-col items-center lg:items-start gap-2"
+            class="w-full herodesk:w-3/4 flex flex-col items-center herodesk:items-start gap-2"
           >
             <div
-              class="flex items-end gap-4 flex-wrap justify-center lg:justify-start card-item"
+              class="flex items-end gap-4 flex-wrap justify-center herodesk:justify-start card-item"
               style="--delay: 0.2s"
             >
               <h1
-                class="text-[3rem] lg:text-[6rem] font-medium text-title-green leading-none"
+                class="text-[3rem] herodesk:text-[9.375cqw] font-medium text-title-green leading-none"
               >
                 EasiAuto
               </h1>
-              <span v-if="latestVersion" class="version-tag mb-2">{{
+              <span v-if="latestVersion" class="version-tag mb-2 herodesk:mb-[0.78125cqw]">{{
                 latestVersion.split(".").slice(0, 2).join(".")
               }}</span>
             </div>
 
             <p
-              class="text-subtitle-green text-base lg:text-2xl font-normal mb-4 card-item text-center lg:text-left"
+              class="text-subtitle-green text-base herodesk:text-[2.34375cqw] font-normal mb-4 herodesk:mb-[1.5625cqw] card-item text-center herodesk:text-left"
               style="--delay: 0.3s"
             >
               一款自动登录希沃白板的小工具
             </p>
 
             <p
-              class="text-white text-xl lg:text-3xl font-normal leading-relaxed lg:tracking-wide card-item text-center lg:text-left"
+              class="text-white text-xl herodesk:text-[2.9296875cqw] font-normal leading-relaxed herodesk:tracking-wide card-item text-center herodesk:text-left"
               style="--delay: 0.4s"
             >
               更<span class="highlight">智能</span>、更<span class="highlight"
@@ -143,7 +150,7 @@
             </p>
 
             <div
-              class="flex flex-col sm:flex-row gap-4 pt-4 card-item items-center justify-center lg:justify-start w-full sm:w-auto"
+              class="flex flex-col sm:flex-row gap-4 herodesk:gap-[1.5625cqw] pt-4 herodesk:pt-[1.5625cqw] card-item items-center justify-center herodesk:justify-start w-full sm:w-auto"
               style="--delay: 0.5s"
             >
               <!-- 下载按钮 -->
@@ -153,9 +160,9 @@
                 href="https://github.com/hxabcd/EasiAuto"
                 target="_blank"
                 rel="noopener"
-                class="btn-secondary flex items-center justify-center gap-2 w-full h-[52px] sm:w-auto"
+                class="btn-secondary flex items-center justify-center gap-2 herodesk:gap-[0.78125cqw] w-full h-[52px] herodesk:h-[5.078125cqw] sm:w-auto herodesk:px-[3.125cqw] herodesk:py-[1.171875cqw]"
               >
-                <Icon name="simple-icons:github" class="w-6 h-6" />
+                <Icon name="simple-icons:github" class="w-6 h-6 herodesk:w-[2.34375cqw] herodesk:h-[2.34375cqw]" />
                 GitHub 仓库
               </a>
             </div>
@@ -205,7 +212,18 @@ const tileRows = [0, 1, 2].map((row) => {
   return [...lightShots.slice(row * 3), ...lightShots.slice(0, row * 3)]
 })
 
-// 横幅区域由 section 几何推算（absolute top-14 即 56px，高 110px），
+// 警告横幅实际渲染高度（px）：移动端 88px、中屏 110px，桌面端为主卡片高度的 25%
+const bannerHeightPx = ref(110)
+
+// 视口比例 r ∈ [8:9, 10:9) 时 --hero-t 线性插值（0 = r=10:9 → 1:9:1，1 = r=8:9 → 1:22:1），
+// 驱动卡片列 9fr→22fr 平滑过渡；SSR/首帧默认中点 0.5，渲染后随 resize 更新
+const heroT = ref(0.5)
+const updateHeroT = () => {
+  const r = window.innerWidth / window.innerHeight
+  heroT.value = Math.min(1, Math.max(0, (10 / 9 - r) / (10 / 9 - 8 / 9)))
+}
+
+// 横幅区域由 section 几何推算（absolute top-14 即 56px），
 // 不测量横幅自身——v-show 隐藏时它的矩形是全零，会导致误判
 // 间距阈值为 -16：横幅底部最多可遮挡主卡片顶部 16px，此时仍显示
 const checkOverlap = () => {
@@ -214,23 +232,46 @@ const checkOverlap = () => {
   if (!section || !card) return
   const s = section.getBoundingClientRect()
   const c = card.getBoundingClientRect()
-  // 横幅 top-14 即 56px；高度移动端收窄为 88px，桌面端 110px
-  const bannerHeight = window.matchMedia('(max-width: 640px)').matches ? 88 : 110
-  const bannerBottom = s.top + 56 + bannerHeight
+  const mq = window.matchMedia
+  const bannerHeight = mq("(max-width: 640px)").matches
+    ? 88
+    : mq("(min-aspect-ratio: 8/9)").matches
+      ? c.height * 0.25
+      : 110
+  bannerHeightPx.value = Math.min(bannerHeight, 100)
+  const bannerBottom = s.top + 56 + bannerHeightPx.value
   bannerFits.value = bannerBottom <= c.top + 16
 }
 
 // 等布局与卡片入场动画（0.8s）基本稳定后再测量，二次测量兜底
 let overlapTimers = []
 
+// 窗口拖拽缩放期间（及停止后 150ms 内）标记 is-resizing：
+// 卡内按钮带 transition-all，cqw 尺寸变化时会产生缓动追赶，需临时禁用过渡
+const isResizing = ref(false)
+let resizeEndTimer
+const onWindowResize = () => {
+  isResizing.value = true
+  clearTimeout(resizeEndTimer)
+  resizeEndTimer = setTimeout(() => {
+    isResizing.value = false
+  }, 150)
+}
+
 onMounted(() => {
   overlapTimers = [setTimeout(checkOverlap, 200), setTimeout(checkOverlap, 1000)]
   window.addEventListener("resize", checkOverlap)
+  window.addEventListener("resize", onWindowResize)
+  updateHeroT()
+  window.addEventListener("resize", updateHeroT)
 })
 
 onUnmounted(() => {
   overlapTimers.forEach(clearTimeout)
   window.removeEventListener("resize", checkOverlap)
+  window.removeEventListener("resize", onWindowResize)
+  window.removeEventListener("resize", updateHeroT)
+  clearTimeout(resizeEndTimer)
 })
 
 // 滚动到内容区域
@@ -247,11 +288,18 @@ const closeBanner = () => {
 </script>
 
 <style scoped>
-.glass-card {
+/* 主卡片 */
+.hero-card {
   background: rgba(0, 0, 0, 0.4);
   border: 4px solid #05f175;
   border-radius: 1.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* 窗口缩放期间（is-resizing）禁止卡内元素过渡，尺寸瞬时跟随 */
+.hero-card.is-resizing,
+.hero-card.is-resizing :deep(*) {
+  transition: none !important;
 }
 
 .version-tag {
@@ -263,7 +311,7 @@ const closeBanner = () => {
   border-radius: 0.6rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-aspect-ratio: 8/9) {
   .version-tag {
     font-size: 1rem;
     padding: 0.1rem 0.5rem;
@@ -291,7 +339,7 @@ const closeBanner = () => {
   border-radius: 2px;
 }
 
-@media (max-width: 1023px) {
+@media (max-aspect-ratio: 8/9) {
   .highlight {
     font-size: 1.4rem;
     font-weight: 700;
@@ -304,8 +352,8 @@ const closeBanner = () => {
 }
 
 /* 移动端卡片优化 */
-@media (max-width: 640px) {
-  .glass-card {
+@media (max-aspect-ratio: 8/9) {
+  .hero-card {
     border-width: 2px;
     border-radius: 1rem;
     margin: 0 0.5rem;
@@ -313,8 +361,8 @@ const closeBanner = () => {
 }
 
 /* 小屏幕手机优化 */
-@media (max-width: 480px) {
-  .glass-card {
+@media (max-aspect-ratio: 8/9) and (max-width: 480px) {
+  .hero-card {
     margin: 0;
   }
 }
@@ -446,6 +494,105 @@ section {
   }
   to {
     opacity: 1;
+  }
+}
+
+/* 桌面端（视口比例 ≥ 8:9）：布局分档 spacing:hero-card:spacing——
+   r ≥ 14:9 为 1:12:7；10:9 ≤ r < 14:9 为 1:9:1；8:9 ≤ r < 10:9 时
+   卡片列 9fr→22fr 线性插值（r 越低卡片越宽，由 --hero-t 驱动）。
+   卡片宽高比 11:5，内部元素以容器查询单位 cqw 随卡片宽度等比缩放。
+   卡片自身的边框/圆角/虚化无法使用自身 cq 单位，改用 --cq2vw 换算（1cqw ≈ 卡片宽/视口宽 × 1vw，
+   各分档精确取值；超宽屏 >1920px 时由 min() 上限约束）。 */
+@media (min-aspect-ratio: 8/9) {
+  /* 网格：卡片居中列，两侧 1fr 留白；默认档 1:22:1（8:9 处） */
+  .hero-grid {
+    display: grid;
+    --hero-cols: 1fr 22fr 1fr;
+    grid-template-columns: var(--hero-cols);
+  }
+
+  .hero-card {
+    margin: 0;
+    --cq2vw: calc(22 / 24);
+    border-width: min(calc(var(--cq2vw) * 0.39053vw), 4.05px);
+    border-radius: min(calc(var(--cq2vw) * 2.3436vw), 24.2px);
+    backdrop-filter: blur(min(calc(var(--cq2vw) * 1.75764vw), 18.2px));
+  }
+
+  .version-tag {
+    font-size: 2.34375cqw;
+    padding: 0.234375cqw 1.09375cqw;
+    border-radius: 0.9375cqw;
+  }
+
+  .highlight {
+    font-size: 3.125cqw;
+  }
+
+  .highlight::after {
+    bottom: 0.46875cqw;
+    height: 0.78125cqw;
+    border-radius: 0.1953125cqw;
+  }
+
+  /* 下载按钮子组件内部固定尺寸同样等比缩放 */
+  .hero-card :deep(.dbtn-main) {
+    gap: 0.78125cqw;
+    padding: 0.78125cqw 1.5625cqw;
+  }  .hero-card :deep(.dbtn-title) {
+    font-size: 1.3671875cqw;
+  }
+  .hero-card :deep(.dbtn-sub) {
+    font-size: 1.171875cqw;
+  }
+  .hero-card :deep(.dbtn-more) {
+    padding: 0 1.5625cqw 0 1.171875cqw;
+  }
+  .hero-card :deep(.dbtn-icon-lg) {
+    width: 1.953125cqw;
+    height: 1.953125cqw;
+  }
+  .hero-card :deep(.dbtn-icon-sm) {
+    width: 1.5625cqw;
+    height: 1.5625cqw;
+  }
+
+  /* GitHub 按钮文字随卡片等比缩放（1024px 设计宽度下为 16px） */
+  .hero-card .btn-secondary {
+    font-size: 1.5625cqw;
+  }
+}
+
+/* 8:9 ≤ r < 10:9：卡片列 9fr→22fr 线性插值（总列数 11 + 13t，精确 fr 换算为百分比） */
+@media (min-aspect-ratio: 8/9) and (max-aspect-ratio: 10/9) {
+  .hero-grid {
+    --hero-cols:
+      calc(100% / (11 + 13 * var(--hero-t)))
+      calc(100% * (9 + 13 * var(--hero-t)) / (11 + 13 * var(--hero-t)))
+      calc(100% / (11 + 13 * var(--hero-t)));
+  }
+  .hero-card {
+    --cq2vw: calc((9 + 13 * var(--hero-t)) / (11 + 13 * var(--hero-t)));
+  }
+}
+
+/* 10:9 ≤ r < 14:9：固定 1:9:1 */
+@media (min-aspect-ratio: 10/9) {
+  .hero-grid {
+    --hero-cols: 1fr 9fr 1fr;
+  }
+  .hero-card {
+    --cq2vw: calc(9 / 11);
+  }
+}
+
+/* r ≥ 14:9：固定 1:12:7 */
+@media (min-aspect-ratio: 14/9) {
+  .hero-grid {
+    --hero-cols: 1fr 12fr 7fr;
+  }
+  .hero-card {
+    --cq2vw: calc(12 / 20);
   }
 }
 </style>

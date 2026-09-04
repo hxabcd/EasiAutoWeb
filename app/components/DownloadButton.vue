@@ -3,15 +3,15 @@
     <!-- 左侧：下载按钮 -->
     <div
       @click="downloadDefault"
-      class="flex-1 sm:flex-initial flex items-center justify-center sm:justify-start gap-2 px-4 py-2 rounded-l-full rounded-r-none bg-border-green text-black font-semibold shadow-lg transition-all"
+      class="flex-1 sm:flex-initial flex items-center justify-center sm:justify-start gap-2 px-4 py-2 rounded-l-full rounded-r-none bg-border-green text-black font-semibold shadow-lg transition-all dbtn-main"
       :class="stableFullAvailable
         ? 'cursor-pointer hover:brightness-110 active:brightness-90'
         : 'opacity-50 cursor-not-allowed'"
     >
-      <Icon name="lucide:download" class="w-5 h-5" />
+      <Icon name="lucide:download" class="w-5 h-5 dbtn-icon-lg" />
       <div class="flex flex-col items-start">
-        <span class="text-sm font-semibold">{{ buttonText }}</span>
-        <span v-if="showVersion" class="text-xs text-gray-900 opacity-80">{{
+        <span class="text-sm font-semibold dbtn-title">{{ buttonText }}</span>
+        <span v-if="showVersion" class="text-xs text-gray-900 opacity-80 dbtn-sub">{{
           versionText
         }}</span>
       </div>
@@ -22,18 +22,18 @@
       v-if="moreTo"
       :to="moreTo"
       title="更多下载选项"
-      class="self-stretch px-3 pr-4 rounded-r-full rounded-l-none cursor-pointer bg-border-green hover:brightness-110 active:brightness-90 text-black font-semibold shadow-lg border-l border-black/20 flex items-center transition-all"
+      class="self-stretch px-3 pr-4 rounded-r-full rounded-l-none cursor-pointer bg-border-green hover:brightness-110 active:brightness-90 text-black font-semibold shadow-lg border-l border-black/20 flex items-center transition-all dbtn-more"
     >
-      <Icon name="lucide:ellipsis" class="w-4 h-4" />
+      <Icon name="lucide:ellipsis" class="w-4 h-4 dbtn-icon-sm" />
     </NuxtLink>
     <div
       v-else
       @click="toggleDropdown"
-      class="self-stretch px-3 pr-4 rounded-r-full rounded-l-none cursor-pointer bg-border-green hover:brightness-110 active:brightness-90 text-black font-semibold shadow-lg border-l border-black/20 flex items-center transition-all"
+      class="self-stretch px-3 pr-4 rounded-r-full rounded-l-none cursor-pointer bg-border-green hover:brightness-110 active:brightness-90 text-black font-semibold shadow-lg border-l border-black/20 flex items-center transition-all dbtn-more"
     >
       <Icon
         name="lucide:chevron-down"
-        class="w-4 h-4 transition-transform"
+        class="w-4 h-4 dbtn-icon-sm transition-transform"
         :class="{ 'rotate-180': showDropdown }"
       />
     </div>
