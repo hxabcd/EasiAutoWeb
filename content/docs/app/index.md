@@ -11,7 +11,7 @@ description: EasiAuto 各项功能的详细说明。
 
 - [登录方式详解](/docs/app/login-methods)：固定位置、图像识别、自动定位、进程注入四种方案的原理与选择建议
 - [二维码登录](/docs/app/qr-login)：扫码即可完成登录的便捷方式
-- [精简版说明](/docs/app/lite)：精简版与完整版的差异
+- [精简版说明](/docs/app/lite)：1.3.0 之前版本的完整版与精简版差异
 - [自动更新](/docs/app/update)：在应用内检查并安装更新
 - [常见问题](/docs/app/faq)：使用中的常见问题与解决办法
 

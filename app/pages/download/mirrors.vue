@@ -157,7 +157,7 @@ const channels = computed(() => {
   if (!Array.isArray(downloads)) return []
   return downloads.map((item) => ({
     channel: item.channel,
-    label: CHANNEL_LABELS[item.channel] || item.channel,
+    label: channelLabel(item.channel, selectedVersion.value),
   }))
 })
 

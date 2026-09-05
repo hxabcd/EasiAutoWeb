@@ -65,7 +65,7 @@ const sections = [
   {
     icon: 'lucide:book-open',
     title: '应用帮助',
-    description: '四种登录方式的详细说明、二维码登录、精简版与自动更新。',
+    description: '四种登录方式的详细说明、二维码登录与自动更新。',
     to: '/docs/app',
   },
 ]

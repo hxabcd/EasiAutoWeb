@@ -34,46 +34,73 @@
       稳定版 <span class="text-gray-200 font-semibold">v{{ stableVersion || '…' }}</span>
     </div>
 
-    <!-- 两个下载按钮 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-      <button
-        @click="download('default')"
-        :disabled="!fullAvailable"
-        class="rounded-2xl bg-border-green text-black p-5 shadow-lg transition-all flex items-center gap-4 text-left"
-        :class="fullAvailable
-          ? 'cursor-pointer hover:brightness-110 active:brightness-90'
-          : 'opacity-50 cursor-not-allowed'"
-      >
-        <Icon name="lucide:download" class="w-6 h-6 shrink-0" />
-        <div>
-          <div class="font-semibold">完整版</div>
-          <div class="text-xs text-gray-900/80">
-            {{ fullAvailable ? `含增强组件` : '当前不可用' }}
+    <!-- 下载按钮 -->
+    <!-- 1.3.0 起移除精简版分支，统一版本仅提供单一下载按钮 -->
+    <div
+      class="grid grid-cols-1 gap-4 w-full"
+      :class="unified ? '' : 'sm:grid-cols-2'"
+    >
+      <template v-if="unified">
+        <button
+          @click="download('default')"
+          :disabled="!fullAvailable"
+          class="rounded-2xl bg-border-green text-black p-5 shadow-lg transition-all flex items-center gap-4 text-left"
+          :class="fullAvailable
+            ? 'cursor-pointer hover:brightness-110 active:brightness-90'
+            : 'opacity-50 cursor-not-allowed'"
+        >
+          <Icon name="lucide:download" class="w-6 h-6 shrink-0" />
+          <div>
+            <div class="font-semibold">下载</div>
+            <div class="text-xs text-gray-900/80">
+              {{ fullAvailable ? '完整功能，无需选择分支' : '当前不可用' }}
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </template>
 
-      <button
-        @click="download('lite')"
-        :disabled="!liteAvailable"
-        class="rounded-2xl border border-primary/40 bg-dark p-5 transition-all flex items-center gap-4 text-left"
-        :class="liteAvailable
-          ? 'cursor-pointer hover:border-primary hover:bg-primary/10 active:bg-primary/20'
-          : 'opacity-50 cursor-not-allowed border-gray-700'"
-      >
-        <Icon name="lucide:package-open" class="w-6 h-6 shrink-0 text-primary" />
-        <div>
-          <div class="font-semibold text-primary">精简版</div>
-          <div class="text-xs text-gray-400">
-            {{ liteAvailable ? '去除非必要组件，体积更小' : '当前不可用' }}
+      <template v-else>
+        <button
+          @click="download('default')"
+          :disabled="!fullAvailable"
+          class="rounded-2xl bg-border-green text-black p-5 shadow-lg transition-all flex items-center gap-4 text-left"
+          :class="fullAvailable
+            ? 'cursor-pointer hover:brightness-110 active:brightness-90'
+            : 'opacity-50 cursor-not-allowed'"
+        >
+          <Icon name="lucide:download" class="w-6 h-6 shrink-0" />
+          <div>
+            <div class="font-semibold">完整版</div>
+            <div class="text-xs text-gray-900/80">
+              {{ fullAvailable ? `含增强组件` : '当前不可用' }}
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
+
+        <button
+          @click="download('lite')"
+          :disabled="!liteAvailable"
+          class="rounded-2xl border border-primary/40 bg-dark p-5 transition-all flex items-center gap-4 text-left"
+          :class="liteAvailable
+            ? 'cursor-pointer hover:border-primary hover:bg-primary/10 active:bg-primary/20'
+            : 'opacity-50 cursor-not-allowed border-gray-700'"
+        >
+          <Icon name="lucide:package-open" class="w-6 h-6 shrink-0 text-primary" />
+          <div>
+            <div class="font-semibold text-primary">精简版</div>
+            <div class="text-xs text-gray-400">
+              {{ liteAvailable ? '去除非必要组件，体积更小' : '当前不可用' }}
+            </div>
+          </div>
+        </button>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup>
+import { isUnifiedVersion } from '~/utils/versions'
+
 const { latestVersion, latestDevVersion, data } = useVersionData()
 
 const stableVersion = latestVersion
@@ -86,6 +113,9 @@ const branchIndex = computed(() => (isDevBranch.value ? 1 : 0))
 const currentVersion = computed(() =>
   isDevBranch.value ? devVersion.value : stableVersion.value
 )
+
+// 1.3.0 起移除精简版分支，统一版本只显示单一下载按钮
+const unified = computed(() => isUnifiedVersion(currentVersion.value))
 
 const branchOptions = computed(() => {
   const options = [

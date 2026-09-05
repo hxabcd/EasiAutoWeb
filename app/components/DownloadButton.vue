@@ -58,6 +58,7 @@
           <span v-else class="text-xs text-gray-500">不可用</span>
         </button>
         <button
+          v-if="!stableUnified"
           @click="downloadStableLite"
           :disabled="!stableLiteAvailable"
           class="w-full px-4 py-3 text-left text-white hover:bg-primary/20 transition-colors flex items-center gap-2 disabled:cursor-not-allowed disabled:text-gray-500 disabled:hover:bg-transparent"
@@ -84,7 +85,7 @@
           <span v-else class="text-xs text-gray-500">不可用</span>
         </button>
         <button
-          v-if="devVersion"
+          v-if="devVersion && !devUnified"
           @click="downloadDevLite"
           :disabled="!devLiteAvailable"
           class="w-full px-4 py-3 text-left text-white hover:bg-primary/20 transition-colors flex items-center gap-2 disabled:cursor-not-allowed disabled:text-gray-500 disabled:hover:bg-transparent"
@@ -100,6 +101,8 @@
 </template>
 
 <script setup>
+import { isUnifiedVersion } from '~/utils/versions'
+
 const props = defineProps({
   buttonText: {
     type: String,
@@ -138,9 +141,15 @@ const stableLiteAvailable = computed(() => hasChannel(stableVersion.value, "lite
 const devFullAvailable = computed(() => hasChannel(devVersion.value, "default"))
 const devLiteAvailable = computed(() => hasChannel(devVersion.value, "lite"))
 
+// 1.3.0 起移除精简版分支，统一版本只显示完整版下载
+const stableUnified = computed(() => isUnifiedVersion(stableVersion.value))
+const devUnified = computed(() => isUnifiedVersion(devVersion.value))
+
 const versionText = computed(() => {
   if (stableVersion.value) {
-    return `v${stableVersion.value} 完整版`
+    return stableUnified.value
+      ? `v${stableVersion.value}`
+      : `v${stableVersion.value} 完整版`
   }
   return "完整版"
 })

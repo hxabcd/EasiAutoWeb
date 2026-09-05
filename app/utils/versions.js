@@ -111,3 +111,25 @@ export const CHANNEL_LABELS = {
   lite: '精简版',
   no_cv: '精简版（无 CV）',
 }
+
+// 1.3.0 起停止发布精简版分支，统一为单一版本（含适配）。
+// 按 release 段判断归属（1.3.0b1、1.3.0、1.4.0 等均视为统一版本）。
+export const UNIFIED_VERSION = [1, 3, 0]
+
+export function isUnifiedVersion(version) {
+  const parsed = parseVersion(version)
+  if (!parsed) return false
+  const len = Math.max(parsed.release.length, UNIFIED_VERSION.length)
+  for (let i = 0; i < len; i++) {
+    const a = parsed.release[i] || 0
+    const b = UNIFIED_VERSION[i] || 0
+    if (a !== b) return a > b
+  }
+  return true
+}
+
+// 渠道展示名：统一版本（≥1.3.0）不再区分分支，默认渠道直接显示「下载」
+export function channelLabel(channel, version) {
+  if (channel === 'default' && isUnifiedVersion(version)) return '下载'
+  return CHANNEL_LABELS[channel] || channel
+}

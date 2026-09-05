@@ -12,7 +12,7 @@
           <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">感谢下载 !</h1>
           <p class="text-gray-400">
             EasiAuto <span class="text-primary">v{{ version }}</span>
-            <span class="text-gray-500"> · {{ channelLabel }}</span>
+            <span class="text-gray-500"> · {{ channelLabelText }}</span>
           </p>
         </div>
 
@@ -133,7 +133,9 @@ const entry = computed(() => {
   return downloads.find((item) => item.channel === channel.value) || null
 })
 
-const channelLabel = computed(() => CHANNEL_LABELS[channel.value] || channel.value)
+const channelLabelText = computed(() =>
+  channelLabel(channel.value, version.value)
+)
 
 const copied = ref(false)
 let copiedTimer = null

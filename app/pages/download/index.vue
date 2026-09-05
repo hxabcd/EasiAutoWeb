@@ -101,7 +101,7 @@
 useHead({ title: '下载' })
 useSeoMeta({
   description:
-    '下载 EasiAuto——自动登录希沃白板的小工具。支持稳定版与测试版，完整版与精简版多种渠道。',
+    '下载 EasiAuto——自动登录希沃白板的小工具。支持稳定版与测试版，1.3.0 起统一为单一版本，无需选择分支。',
 })
 
 const requirements = [

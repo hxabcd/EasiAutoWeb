@@ -84,7 +84,7 @@
         :title="download.sha256 ? `SHA256: ${download.sha256}` : ''"
       >
         <Icon name="lucide:download" class="w-4 h-4" />
-        {{ channelLabel(download.channel) }}
+        {{ channelLabel(download.channel, version) }}
       </NuxtLink>
     </div>
     <p v-else class="text-gray-500 text-sm">
@@ -124,6 +124,4 @@ const props = defineProps({
 const downloads = computed(() =>
   Array.isArray(props.info.downloads) ? props.info.downloads : []
 )
-
-const channelLabel = (channel) => CHANNEL_LABELS[channel] || channel
 </script>
