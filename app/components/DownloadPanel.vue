@@ -44,17 +44,18 @@
         <button
           @click="download('default')"
           :disabled="!fullAvailable"
-          class="rounded-2xl bg-border-green text-black p-5 shadow-lg transition-all flex items-center gap-4 text-left"
-          :class="fullAvailable
-            ? 'cursor-pointer hover:brightness-110 active:brightness-90'
-            : 'opacity-50 cursor-not-allowed'"
+          class="rounded-2xl bg-border-green text-black p-5 shadow-lg transition-all flex items-center gap-4 text-left max-w-full"
+          :class="[
+            fullAvailable
+              ? 'cursor-pointer hover:brightness-110 active:brightness-90'
+              : 'opacity-50 cursor-not-allowed',
+            'sm:w-[calc(50%-0.5rem)] sm:mx-auto',
+          ]"
         >
           <Icon name="lucide:download" class="w-6 h-6 shrink-0" />
           <div>
             <div class="font-semibold">下载</div>
-            <div class="text-xs text-gray-900/80">
-              {{ fullAvailable ? '完整功能，无需选择分支' : '当前不可用' }}
-            </div>
+            <div class="text-xs text-gray-900/80">Windows x64 · 便携版</div>
           </div>
         </button>
       </template>
