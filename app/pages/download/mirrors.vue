@@ -72,6 +72,12 @@
           <div class="min-w-0">
             <div class="flex flex-wrap items-center gap-2">
               <h2 class="font-semibold text-white">{{ mirror.name }}</h2>
+              <span
+                v-if="mirror.preferred"
+                class="px-2 py-0.5 rounded-full text-xs font-semibold bg-primary/20 text-primary"
+              >
+                首选
+              </span>
               <span class="text-xs text-gray-500 font-mono">{{
                 mirror.domain
               }}</span>
@@ -83,10 +89,11 @@
           :href="mirrorUrl(mirror)"
           target="_blank"
           rel="noopener"
-          class="btn-primary text-sm inline-flex items-center justify-center gap-2 shrink-0"
+          class="text-sm inline-flex items-center justify-center gap-2 shrink-0"
+          :class="mirror.preferred ? 'btn-primary' : 'px-4 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-primary/40 hover:text-white transition-colors'"
         >
           <Icon name="lucide:download" class="w-4 h-4" />
-          下载
+          {{ mirror.preferred ? '首选下载' : '下载' }}
         </a>
       </div>
     </div>
@@ -123,13 +130,21 @@
 <script setup>
 useHead({ title: '下载镜像' })
 useSeoMeta({
-  description: 'EasiAuto 官方下载镜像站点列表，支持 ghproxy 与 ghfast 加速下载。',
+  description:
+    'EasiAuto 官方下载镜像站点列表，首选 gh-proxy，另支持 ghproxy 与 ghfast 加速下载。',
 })
 
 const { data, latestVersion } = useVersionData()
 
-// 镜像域名以此前缀拼接原始 GitHub 下载链接
+// 镜像域名以此前缀拼接原始 GitHub 下载链接；数组顺序即推荐顺序
 const mirrors = [
+  {
+    name: 'gh-proxy',
+    domain: 'https://gh-proxy.org/',
+    description: 'GitHub 国内镜像，推荐首选',
+    icon: 'lucide:github',
+    preferred: true,
+  },
   {
     name: 'ghproxy',
     domain: 'https://ghproxy.net/',
